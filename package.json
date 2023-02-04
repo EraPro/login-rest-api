@@ -1,0 +1,21 @@
+{
+  "name": "ztech",
+  "version": "9.3.2",
+  "description": "Ini Project Rahasia Z.P.A",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "keywords": [
+    "Z.P.A"
+  ],
+  "author": "ZeroTechnology",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.0.0",
+    "mongoose": "^6.9.0"
+  }
+}
