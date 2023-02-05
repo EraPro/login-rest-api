@@ -22,10 +22,10 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Route for register
-app.post('/register', (req, res) => {
+app.get('/register', (req, res) => {
   const newUser = new User({
-    username: req.body.username,
-    password: req.body.password
+    username: req.query.username,
+    password: req.query.password
   });
 
   newUser.save((err, user) => {
@@ -38,13 +38,13 @@ app.post('/register', (req, res) => {
 });
 
 // Route for login
-app.post('/login', (req, res) => {
-  User.findOne({ username: req.body.username }, (err, user) => {
+app.get('/login', (req, res) => {
+  User.findOne({ username: req.query.username }, (err, user) => {
     if (err) {
       res.status(500).send({ message: 'Error occured while logging in' });
     } else if (!user) {
       res.status(400).send({ message: 'Username not found' });
-    } else if (user.password !== req.body.password) {
+    } else if (user.password !== req.query.password) {
       res.status(400).send({ message: 'Incorrect password' });
     } else {
       const token = jwt.sign({ username: user.username }, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJpYXQiOjE2NzU1MTQ3ODIsImV4cCI6MTY3NTYwMTE4Mn0.iYq1_6Nl1MtAbTaIWExdF1OD2RZQW7H2ZfWhLZlbVyU');
